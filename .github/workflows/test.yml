@@ -22,7 +22,5 @@ jobs:
 
       - name: Run Tests
         run: |
-      		cd ./test
-      		python test.py  # Run your test script
-
-      # You can add more steps here if needed, such as publishing test results
+          cd ./test
+          python test.py  # Run your test script
