@@ -17,4 +17,17 @@ jobs:
           REGISTRY_PASSWORD: ${{ vars.REGISTRY_PASSWORD }}
           REGISTRY_USER: ${{ vars.REGISTRY_USER }}
           APP_NAME: ${{ vars.APP_NAME }}
-          IMAGE: ${{ vars.REGISTRY }}/${{ vars.APP_NAME }}
+          IMAGE: ${{ vars.REGISTRY }}/${{ vars.APP_NAME }}  
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Run script
+        run: |
+          docker login $REGISTRY -u $REGISTRY_USER -p $REGISTRY_PASSWORD
+          docker build -t "$IMAGE:${GITHUB_SHA:0:7}" ./application
+          docker push "$IMAGE:${GITHUB_SHA:0:7}"
+        env:
+          REGISTRY: ${{ vars.REGISTRY }}
+          REGISTRY_PASSWORD: ${{ vars.REGISTRY_PASSWORD }}
+          REGISTRY_USER: ${{ vars.REGISTRY_USER }}
+          APP_NAME: ${{ vars.APP_NAME_1 }}
+          IMAGE: ${{ vars.REGISTRY }}/${{ vars.APP_NAME_1 }}
