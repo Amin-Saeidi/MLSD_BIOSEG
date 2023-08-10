@@ -3,6 +3,9 @@ from torchvision import models, transforms
 import torch
 import io
 import requests
+import os
+import sys
+sys.path.append("..")
 
 
 def classifier():
