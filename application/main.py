@@ -25,16 +25,22 @@ app = FastAPI()
 classifier_model = classifier()
 seg_model = unet()
 
-if not os.path.isfile("./var/lib/data/unet_membrane.hdf5"):
+# if not os.path.isfile("./var/lib/data/unet_membrane.hdf5"):
 
-        url = 'https://drive.usercontent.google.com/download?id=1svUzgVPIAoMT2FZpV5mqOCpZfYqgPAUx&export=download&authuser=0&confirm=t&uuid=c97e817b-a205-4faf-9131-344ca91874b2&at=AC2mKKSpHrtQXpWo-vyifYDWH_Ot:1691560876438'
-        r = requests.get(url, allow_redirects=True)
-        open('./var/lib/data/unet_membrane.hdf5', 'wb').write(r.content)
-        print("U-net Model Added to Disk")
-        logging.info('U-net Model Added to Disk')
+#         url = 'https://drive.usercontent.google.com/download?id=1svUzgVPIAoMT2FZpV5mqOCpZfYqgPAUx&export=download&authuser=0&confirm=t&uuid=c97e817b-a205-4faf-9131-344ca91874b2&at=AC2mKKSpHrtQXpWo-vyifYDWH_Ot:1691560876438'
+#         r = requests.get(url, allow_redirects=True)
+#         open('./var/lib/data/unet_membrane.hdf5', 'wb').write(r.content)
+#         print("U-net Model Added to Disk")
+#         logging.info('U-net Model Added to Disk')
 
-seg_model.load_weights("./var/lib/data/unet_membrane.hdf5")
+# seg_model.load_weights("./var/lib/data/unet_membrane.hdf5")
 
+url = 'https://drive.usercontent.google.com/download?id=1svUzgVPIAoMT2FZpV5mqOCpZfYqgPAUx&export=download&authuser=0&confirm=t&uuid=c97e817b-a205-4faf-9131-344ca91874b2&at=AC2mKKSpHrtQXpWo-vyifYDWH_Ot:1691560876438'
+r = requests.get(url, allow_redirects=True)
+open('unet_membrane.hdf5', 'wb').write(r.content)
+seg_model.load_weights('unet_membrane.hdf5')
+print("U-net Model Added to directory")
+logging.info('U-net Model Added to directory')
 
 mlflow.set_tracking_uri("http://mlflow-server.mlsd-bioseg.svc:5000")
 # Start an MLflow run
