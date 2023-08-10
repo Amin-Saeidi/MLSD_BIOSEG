@@ -26,10 +26,12 @@ def classifier(type = "app"):
         # Load the saved weights into the model
         checkpoint = torch.load('./var/lib/data/resnet_ft.pt', map_location=torch.device('cpu'))
     else:
+        print("GGG")
         if not os.path.isfile("resnet_ft.pt"):
+            print("GOG")
             open('resnet_ft', 'wb').write(r.content)
-            print("RES-net Model Added to Disk")
-            logging.info('RES-net Model Added to Disk')
+            print("RES-net Model Added to test file")
+            logging.info('RES-net Model Added to test file')
     
         # Load the saved weights into the model
         checkpoint = torch.load('resnet_ft.pt', map_location=torch.device('cpu'))
