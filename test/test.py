@@ -11,7 +11,7 @@ if __name__ == "__main__":
         f = image.read()
         b = bytearray(f)
     
-    classifier_model = classifier.classifier("test")
+    classifier_model = classifier.classifier()
     image_class, image_class_name = classifier.preprocessing_and_predict(classifier_model, b)
     
     if image_class_name == "CELL MEMBRANE":
