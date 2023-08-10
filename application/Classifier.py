@@ -7,34 +7,29 @@ import os
 import sys
 import logging
 
-sys.path.append("..")
+
 
 
 def classifier(type = "app"):
     # Define the ResNet model with the same architecture as your finetuned model
     model = models.resnet50(num_classes=2) # Replace 2 with the number of classes in your finetuned model
-
+    url = 'https://drive.usercontent.google.com/download?id=19pOxhX9t-1fbJuAF8EHMEnEcdvM2ruAL&export=download&authuser=0&confirm=t&uuid=944c801c-735f-4c8a-9342-48eb8c426395&at=AC2mKKTGKC3HpcBooV6yXcunzL88:1691560364241'
+    r = requests.get(url, allow_redirects=True)
+            
     if type == "app":
+        sys.path.append("..")
         if not os.path.isfile("./var/lib/data/resnet_ft.pt"):
-    
-            url = 'https://drive.usercontent.google.com/download?id=19pOxhX9t-1fbJuAF8EHMEnEcdvM2ruAL&export=download&authuser=0&confirm=t&uuid=944c801c-735f-4c8a-9342-48eb8c426395&at=AC2mKKTGKC3HpcBooV6yXcunzL88:1691560364241'
-            r = requests.get(url, allow_redirects=True)
             open('./var/lib/data/resnet_ft', 'wb').write(r.content)
             print("RES-net Model Added to Disk")
             logging.info('RES-net Model Added to Disk')
-    
-    
+            
         # Load the saved weights into the model
         checkpoint = torch.load('./var/lib/data/resnet_ft.pt', map_location=torch.device('cpu'))
     else:
         if not os.path.isfile("resnet_ft.pt"):
-    
-            url = 'https://drive.usercontent.google.com/download?id=19pOxhX9t-1fbJuAF8EHMEnEcdvM2ruAL&export=download&authuser=0&confirm=t&uuid=944c801c-735f-4c8a-9342-48eb8c426395&at=AC2mKKTGKC3HpcBooV6yXcunzL88:1691560364241'
-            r = requests.get(url, allow_redirects=True)
             open('resnet_ft', 'wb').write(r.content)
             print("RES-net Model Added to Disk")
             logging.info('RES-net Model Added to Disk')
-    
     
         # Load the saved weights into the model
         checkpoint = torch.load('resnet_ft.pt', map_location=torch.device('cpu'))
