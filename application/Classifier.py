@@ -12,7 +12,7 @@ def classifier(type = "app"):
     # Define the ResNet model with the same architecture as your finetuned model
     model = models.resnet50(num_classes=2) # Replace 2 with the number of classes in your finetuned model
 
-    if type = "test":
+    if type == "app":
         if not os.path.isfile("./var/lib/data/resnet_ft.pt"):
     
             url = 'https://drive.usercontent.google.com/download?id=19pOxhX9t-1fbJuAF8EHMEnEcdvM2ruAL&export=download&authuser=0&confirm=t&uuid=944c801c-735f-4c8a-9342-48eb8c426395&at=AC2mKKTGKC3HpcBooV6yXcunzL88:1691560364241'
