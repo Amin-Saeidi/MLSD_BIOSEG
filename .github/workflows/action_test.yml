@@ -48,10 +48,25 @@ jobs:
           docker login $REGISTRY -u $REGISTRY_USER -p $REGISTRY_PASSWORD
           docker build -t "$IMAGE:${GITHUB_SHA:0:7}" ./application
           docker images "$IMAGE:${GITHUB_SHA:0:7}"
-          docker push "$IMAGE:${GITHUB_SHA:0:7}" 
+          docker push "$IMAGE:${GITHUB_SHA:0:7}"
         env:
           REGISTRY: ${{ vars.REGISTRY }}
           REGISTRY_PASSWORD: ${{ vars.REGISTRY_PASSWORD }}
           REGISTRY_USER: ${{ vars.REGISTRY_USER }}
-          APP_NAME: ${{ vars.APP_NAME_1}}
-          IMAGE: ${{ vars.REGISTRY }}/${{ vars.APP_NAME_1}}
+          APP_NAME: ${{ vars.APP_NAME_1 }}
+          IMAGE: ${{ vars.REGISTRY }}/${{ vars.APP_NAME_1 }}
+  darkube_deploy:
+    needs: build
+    container: hamravesh.hamdocker.ir/public/darkube-cli:v1.1
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run script mlflow deployment
+        run: darkube deploy --ref master --token ${DARKUBE_DEPLOY_TOKEN} --app-id ${DARKUBE_APP_ID}  --image-tag "${GITHUB_SHA:0:7}" --job-id "$GITHUB_RUN_ID" --stateless-app true
+        env:
+          DARKUBE_DEPLOY_TOKEN: ${{ vars.DARKUBE_DEPLOY_TOKEN}}
+          DARKUBE_APP_ID: ${{ vars.DARKUBE_APP_ID}}
+      - name: Run script application deployment
+        run: darkube deploy --ref master --token ${DARKUBE_DEPLOY_TOKEN} --app-id ${DARKUBE_APP_ID}  --image-tag "${GITHUB_SHA:0:7}" --job-id "$GITHUB_RUN_ID" --stateless-app true
+        env:
+          DARKUBE_DEPLOY_TOKEN: ${{ vars.DARKUBE_DEPLOY_TOKEN_1}}
+          DARKUBE_APP_ID: ${{ vars.DARKUBE_APP_ID_1}}
