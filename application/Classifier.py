@@ -34,7 +34,7 @@ def classifier(type = "app"):
             logging.info('RES-net Model Added to test file')
     
         # Load the saved weights into the model
-        checkpoint = torch.load('resnet_ft.pt', map_location=torch.device('cpu'))
+        checkpoint = torch.load('./resnet_ft.pt', map_location=torch.device('cpu'))
     
     # print(checkpoint.keys())  # Print the keys of the checkpoint dictionary
     model.load_state_dict(checkpoint)  # Replace with the actual key name in your checkpoint dictionary
