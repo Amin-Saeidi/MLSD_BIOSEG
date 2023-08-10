@@ -3,6 +3,7 @@ from torchvision import models, transforms
 import torch
 import io
 import requests
+import logging
 
 
 def classifier():
