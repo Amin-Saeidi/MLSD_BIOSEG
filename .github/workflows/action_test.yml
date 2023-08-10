@@ -48,7 +48,7 @@ jobs:
           docker login $REGISTRY -u $REGISTRY_USER -p $REGISTRY_PASSWORD
           docker build -t "$IMAGE:${GITHUB_SHA:0:7}" ./application
           docker images "$IMAGE:${GITHUB_SHA:0:7}"
-          docker push --progress "$IMAGE:${GITHUB_SHA:0:7}" 
+          docker push "$IMAGE:${GITHUB_SHA:0:7}" 
         env:
           REGISTRY: ${{ vars.REGISTRY }}
           REGISTRY_PASSWORD: ${{ vars.REGISTRY_PASSWORD }}
