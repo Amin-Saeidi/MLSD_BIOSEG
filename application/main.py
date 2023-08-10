@@ -16,23 +16,35 @@ import mlflow
 import psutil
 import time
 import requests
-
+import os
+import sys
+import logging
+sys.path.append("..")
 
 app = FastAPI()
 classifier_model = classifier()
 seg_model = unet()
-url = 'https://drive.usercontent.google.com/download?id=1svUzgVPIAoMT2FZpV5mqOCpZfYqgPAUx&export=download&authuser=0&confirm=t&uuid=c97e817b-a205-4faf-9131-344ca91874b2&at=AC2mKKSpHrtQXpWo-vyifYDWH_Ot:1691560876438'
-r = requests.get(url, allow_redirects=True)
 
-open('unet_membrane.hdf5', 'wb').write(r.content)
-seg_model.load_weights('unet_membrane.hdf5')
-    
+if not os.path.isfile("./var/lib/data/unet_membrane.hdf5"):
+
+        url = 'https://drive.usercontent.google.com/download?id=1svUzgVPIAoMT2FZpV5mqOCpZfYqgPAUx&export=download&authuser=0&confirm=t&uuid=c97e817b-a205-4faf-9131-344ca91874b2&at=AC2mKKSpHrtQXpWo-vyifYDWH_Ot:1691560876438'
+        r = requests.get(url, allow_redirects=True)
+        open('./var/lib/data/unet_membrane.hdf5', 'wb').write(r.content)
+        print("U-net Model Added to Disk")
+        logging.info('U-net Model Added to Disk')
+
+seg_model.load_weights("./var/lib/data/unet_membrane.hdf5")
+
+
 mlflow.set_tracking_uri("http://mlflow-server.mlsd-bioseg.svc:5000")
 # Start an MLflow run
 mlflow.start_run()
 run_name = "MODEL-MLSD_BIOSEG"
 mlflow.set_tag("mlflow.runName", run_name)
 
+
+print("1")
+logging.info('1')
 # Add CORS middleware to allow requests from the web page's origin
 app.add_middleware(
     CORSMiddleware,
@@ -41,20 +53,35 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+
+print("2")
+logging.info('2')
 # Mount the "static" directory to serve static files
 app.mount("/static", StaticFiles(directory="static"), name="static")
 
+
+print("3")
+logging.info('3')
 @app.get("/")
 async def read_html():
     with open("static/index.html", "r") as f:
         html = f.read()
+        print("4")
+        logging.info('4')
     return HTMLResponse(content=html, status_code=200)
+
+
 
 # Load and serve the new version of the model
 @app.post('/model')
 async def model(image: UploadFile = File(...)):
-    
+
+    print("5")
+    logging.info('5')
     image_bytes = await image.read()
+    print("6")
+    logging.info('6')
+    
     
     start_time = time.time()
 
@@ -92,7 +119,8 @@ async def model(image: UploadFile = File(...)):
 
 @app.post("/predict")
 async def predict(image: UploadFile = File(...)):
-
+    print("7")
+    logging.info('7')
     return await model(image)
     
 def reading_image_properly(image_bytes):
