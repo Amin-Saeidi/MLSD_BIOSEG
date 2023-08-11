@@ -10,7 +10,7 @@ if __name__ == "__main__":
         b = bytearray(f)
     
     classifier_model = classifier.classifier()
-    image_class, image_class_name = classifier.preprocessing_and_predict(classifier_model, b)
+    image_class, image_class_name = classifier.classifier_preprocessing_and_predict(classifier_model, b)
     
     if image_class_name == "CELL MEMBRANE":
         test_checker = True
