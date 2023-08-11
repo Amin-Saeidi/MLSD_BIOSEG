@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const resultText = document.getElementById('result-text');
     const uploadedImage = document.getElementById('uploaded-image');
     const predictedImage = document.getElementById('predicted-image');
-    const endpoint = 'http://localhost:8000/predict';
+    const endpoint = 'https://application.darkube.app/predict';
 
     classifyButton.addEventListener('click', function() {
         const file = imageInput.files[0];
