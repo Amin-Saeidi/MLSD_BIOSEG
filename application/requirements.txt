@@ -16,3 +16,4 @@ scikit-image
 dropbox
 pydantic
 SQLAlchemy
+psycopg2-binary 
