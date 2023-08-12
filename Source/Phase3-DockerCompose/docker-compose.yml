@@ -1,0 +1,22 @@
+services:
+  mlflow:
+    container_name: mlflow_container
+    build:
+      context: ./mlflow
+    ports:
+      - "5000:5000"
+    networks:
+      - bridgenet
+  
+  application:
+    container_name: app_container
+    build:
+      context: ./application
+    ports:
+      - "8000:8000"
+    networks:
+      - bridgenet
+
+networks:
+  bridgenet:
+    driver: bridge

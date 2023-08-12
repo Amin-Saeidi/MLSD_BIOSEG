@@ -1,0 +1,15 @@
+fastapi 
+torch 
+torchvision 
+uvicorn 
+pillow 
+python-multipart 
+requests
+psutil
+mlflow
+starlette
+keras
+tensorflow
+numpy
+tensorflow-addons
+scikit-image

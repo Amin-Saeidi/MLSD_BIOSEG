@@ -1,0 +1,13 @@
+1) Web-Application Link: NA
+
+2) GitHub Link: https://github.com/Amin-Saeidi/CellMembraneSegmentation_MLOps
+
+3) Git commit hash: a8f6705
+
+------------------------------------------------------------------
+
+4) Project demo video: https://drive.google.com/file/d/1own8nTx4ULn9wX6O0Y1BWdc0w_Hsm10F/view?usp=sharing
+
+
+5) Segmentation/Classification models' weights (due to the large size was not uploaded on the Git and zip file): 
+https://drive.google.com/drive/folders/1pXZm9HDgaRGTrZM9PtRd9pXIEvH7cK-p
