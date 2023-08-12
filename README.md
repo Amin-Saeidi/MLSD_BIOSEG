@@ -35,7 +35,7 @@ Not yet
 There are two demos, one related to [local deployment](https://drive.google.com/file/d/11Pys3JW5WwitAc69QxSkiD6hlY4v1c8d/view?usp=sharing) and one related to [Darkube Deployment](https://drive.google.com/file/d/1_9JM-J7y_hdN9z06lCG4VXejnbDlp-5S/view?usp=sharing)  
 
 ## Usage
-You Can use this project by this [link](https://application.darkube.app)
+You Can use this project by this [link](https://application.darkube.app) - But first we should manually replace the dropbox_access_token in [this file](https://github.com/Amin-Saeidi/MLSD_BIOSEG/blob/master/application/DB_DropBox_Works/DB_DB_Works.py) with a new one from dropbox app console.
 
 ## Contributing
 Just to let you know, pull requests are welcome. For major changes, please open an issue first
