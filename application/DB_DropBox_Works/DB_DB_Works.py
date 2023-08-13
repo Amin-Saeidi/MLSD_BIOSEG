@@ -9,7 +9,7 @@ import database.database as database
 class DB_DropBox_Works:
 
     def __init__(self):
-        self.dropbox_access_token = "sl.Bj-nl8f20jwzGwBK1rhfLDpearsYvUKy69C3XyBU0f_L_C7pcogtooGYwxhccg2M2GVNmsIi7J0_kjaHK_5EFlAkw2yG6iQW7zgNW6ztq_RnYk8hbD67ex7ArR_MyVJVllMMHZoZhg3jqoUWO_E6nAE"
+        self.dropbox_access_token = "sl.BkCZosKgPf3sGZeHnPePVg0V9ISGQ9_i_Vcm0-n_Ms18Q-QwjniETxwhaJ4VFj6CL-kJNiyiwmdLF2dckJQgqg4PFm1v3v38jzuE63EHh0Ss3IBh_xvtYAZEEqoCYl6_SPXx8hwnasabF9hRvcsVPJ4"
 
     def random_name(self, l = 7):
         res = ''.join(random.choices(string.ascii_uppercase + string.digits, k=l))
