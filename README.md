@@ -9,7 +9,8 @@ language and TensorFlow deep learning framework to write the code.
 The contents of this project are available in the data and source folder. Also, there are other folders (test - application - Mlflow) that are for the deployment process, each folder handles one docker image. Also, there is another folder .github/workflow which is for CI/CD and GitHub action. All the data extracted and used in this project are given in the data folder. In the source folder, you can find the codes related to the demo project, data preprocessing, model implementation, and deployment-related (last version - with AB testing) codes. This project divided into 3 different phases: *Data Preprocessing* - *Model Development* - *Deployment*
 
 ## Phase1 - Data Preprocessing
-The original dataset is from [the isbi](http://brainiac2.mit.edu/isbi_challenge/) challenge, and I've downloaded it and done the pre-processing (Data augmentation and many other image-related processes)[Phase1](https://github.com/Amin-Saeidi/MLSD_BIOSEG/blob/master/Source/Phase1/MLSys_Project_phase1.ipynb). Also, I train a fine-tuned Resnet model to identify users' uploaded image class(CELL MEMBRANE or OTHER)
+The original dataset is from [the isbi](http://brainiac2.mit.edu/isbi_challenge/) challenge, and I've downloaded it and done the pre-processing (Data augmentation and many other image-related processes).
+Codes are accessible through [Phase1](https://github.com/Amin-Saeidi/MLSD_BIOSEG/blob/master/Source/Phase1/MLSys_Project_phase1.ipynb) directory. Also, I train a fine-tuned Resnet model to identify users' uploaded image class(CELL MEMBRANE or OTHER)
 
 ## Phase2 - Model development
 
